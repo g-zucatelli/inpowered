@@ -1,0 +1,35 @@
+{
+    "name": "temp",
+    "seed": 42, 
+    "datapath": "../problem_merged_data.csv",
+    "pre_process": {
+        "processed_data_path": "processed_data/baseline.pkl",
+        "num_input": ["bid", "budget"],
+        "cat_input": null,
+        "target_output": "engagements",
+        "train_split": 0.8
+    },
+    "train": {
+        "cat_emb_dim": 4,
+        "learning_rate": 0.001,
+        "decay_steps": 20,
+        "decay_rate": 0.98,
+        "dense_dims": [1024, 1024, 1024, 1024, 1024, 1024, 16],
+        "_drop_out_rate": 0.3,
+        "use_test_as_valid": true,
+        "valid_split": 0.1,
+        "batch_size": 128,
+        "epochs": 100
+    },
+    "cpe_min":{
+        "engage_model_path": "experiments/baseline_engagements/model/model.keras",
+        "media_spend_model_path": "experiments/baseline_media_spend/model/model.keras",
+        "engage_data": "processed_data/baseline_engage.pkl",
+        "spend_data": "processed_data/baseline_spend.pkl",
+        "bid_range": [0.1, 1.1],
+        "budget_range": [5.9, 680],
+        "n_grid": 20,
+        "sample_idx": 200,
+        "max_media_spend": 50
+    }
+}

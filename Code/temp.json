@@ -1,0 +1,38 @@
+{
+    "name": "bert_mlp",
+    "seed": 42, 
+    "datapath": "../problem_merged_data.csv",
+    "pre_process": {
+        "processed_data_path": "processed_data/bert_data_filtered_split0.8.pkl",
+        "num_input": ["bid", "budget"],
+        "cat_input": null,
+        "engage_cat_input": ["group", "item", "channel", "IABCategory", 
+                            "targetGeo", "targetInterest", "targetAge", "targetOs"],  
+        "spend_cat_input": ["group", "item", "channel", "IABCategory", 
+                            "targetGeo", "targetInterest", "targetOs", "targetDevices", "CATEGORY_1"],          
+        "target_output": ["engagements", "media_spend"],
+        "train_split": 0.8,
+        "remove_outliers": true,
+        "std_limit": 3
+    },
+    "train": {
+        "cat_emb_dim": 4,
+        "learning_rate": 0.001,
+        "decay_steps": 20,
+        "decay_rate": 0.98,
+        "dense_dims": [1024, 1024, 1024, 1024, 1024, 1024, 16],
+        "_drop_out_rate": 0.2,
+        "use_test_as_valid": true,
+        "valid_split": 0.1,
+        "batch_size": 128,
+        "epochs": 10,
+        "use_bert": true 
+    },
+    "cpe_min":{
+        "bid_range": [0.1, 1.1],
+        "budget_range": [5.9, 680],
+        "n_grid": 20,
+        "sample_idx": 235,
+        "max_media_spend": 200
+    }
+}
